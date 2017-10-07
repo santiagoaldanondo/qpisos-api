@@ -12,9 +12,10 @@ const ListingSchema = new Schema({
   bedrooms    : { type: Number, required: true, default: 0},
   bathrooms   : { type: Number, required: true},
   location    : { 
-    lat: Number,
-    long: Number,
-    accurance: Number
+    type: {
+      type: String
+    },
+    coordinates: [Number]
   },
   lister_name: { type: String, require: true },
   lister_url: { type: String, require: true },
@@ -24,8 +25,8 @@ const ListingSchema = new Schema({
 ListingSchema.methods.belongsTo = function(user){
   return this._owner.equals(user._id);
 };
-ListingSchema.index({ location: '2dsphere' });
 
+ListingSchema.index({ location: '2dsphere' });
 
 const Listing = mongoose.model('Listing', ListingSchema);
 

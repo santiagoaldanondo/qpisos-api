@@ -21,11 +21,10 @@ module.exports.run = () => {
                         size       : nestoriaListing.size || 0,
                         bedrooms   : nestoriaListing.room_number || 0,
                         bathrooms  : nestoriaListing.bathroom_number || 0,
-                        location   : { 
-                            lat:  nestoriaListing.latitude || 0,
-                            long: nestoriaListing.longitude || 0,
-                            accurance: nestoriaListing.location_accuracy || 0
-                        },
+                        location: {
+                            type: "Point",
+                            coordinates: [nestoriaListing.latitude, nestoriaListing.longitude] || [],
+                        } || {},
                         lister_name: nestoriaListing.lister_name || '',
                         lister_url:  nestoriaListing.lister_url || '',
                         images: nestoriaListing.img_url || ''

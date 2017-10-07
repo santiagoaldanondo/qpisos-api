@@ -1,6 +1,7 @@
 mongoose = require('mongoose');
 const Listing = require('../models/listing.model');
 const MAX_LISTING_RESULTS = 6;
+const MAX_COMPETENCE_METERS = 500;
 
 module.exports.getAll = (req, res, next) => {
   const query = {}
@@ -64,8 +65,20 @@ module.exports.getCompetence = (req, res, next) => {
   Listing.findById(req.params.id)
     .then((listing) => {
       if (listing) {
-        
-        res.status(200).json(listing)
+        let query = {
+          location: {
+            $near: {
+              $geometry: {
+                 type : "Point",
+                 coordinates: listing.location.coordinates
+              },
+              $maxDistance: MAX_COMPETENCE_METERS
+            }
+          }
+        };
+        Listing.find(query)
+          .then((listings) => res.status(200).json(listings))
+          .catch((err) => next(err))
       } else {
         res.status(404).json({ message: 'Listing not found' });
       }
