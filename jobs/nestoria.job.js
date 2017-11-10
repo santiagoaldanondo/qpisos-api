@@ -1,11 +1,11 @@
 const request = require('request');
-const NESTORIA_API = 'https://api.nestoria.es/api?encoding=json&pretty=1&action=search_listings&c…ing_type=buy&place_name=madrid';
+const NESTORIA_API = 'https://api.nestoria.es/api?encoding=json&pretty=1&action=search_listings&country=es&listing_type=rent&place_name=madrid';
 mongoose = require('mongoose');
 const Listing = require('../models/listing.model');
 
 module.exports.run = () => {
     console.log("Starting Nestoria sync");
-    for( let i = 1; i <= 200; i++) {        
+    for( let i = 1; i <=300; i++) {        
         request.get(`${NESTORIA_API}&page=${i}`, (err, res, body) => {
             if (err) { console.log(err); }
             else {

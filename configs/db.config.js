@@ -12,3 +12,4 @@ db.once('open', () => {
     console.log(`Connected to the ${dbName} database`);
 });
 
+module.exports = db

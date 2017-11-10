@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "DEBUG=qpisos-a2-api:* nodemon ./bin/www"
+    "dev": "DEBUG=qpisos-a2-api:* nodemon ./bin/www",
+    "deploy": "git push origin master && git push heroku master"
   },
   "dependencies": {
     "angular2-materialize": "^15.1.9",
