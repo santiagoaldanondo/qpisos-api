@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const dbName = 'qpisos';
-const dbUri = `mongodb://localhost/${dbName}`;
+const dbUri = `mongodb://heroku_szzg7jd3:pfcder3gvmenb5bkckbu26oob8@ds257245.mlab.com:57245/heroku_szzg7jd3`;
 
 mongoose.connect(dbUri, { useMongoClient: true });
 mongoose.promise = Promise;

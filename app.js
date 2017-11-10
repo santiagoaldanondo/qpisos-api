@@ -14,7 +14,7 @@ require('./configs/scheduler.config');
 var corsConfig = require('./configs/cors.config');
 
 var listingRoutes = require('./routes/listing.routes');
-
+var rentingRoutes = require('./routes/renting.routes');
 
 var app = express();
 
@@ -29,6 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 const apiPrefix = process.env.API_PREFIX || '/api';
 
 app.use(`${apiPrefix}/listings`, listingRoutes);
+app.use(`${apiPrefix}/renting`, rentingRoutes);
 
 app.use(function (req, res, next) {
   var err = new Error('Not Found');
